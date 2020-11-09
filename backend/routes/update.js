@@ -7,8 +7,6 @@ let connection = require('../public/javascripts/phpMyAdmin');
 var router = express.Router();
 
 /* POST registering user. */
-
-
 router.post('/', function (req, res) {
     if (_.isEmpty(req.body.titre)) {
         connection.query(`SELECT * FROM advertisements WHERE numAdvertisements='${req.body.numAdvertisements}'`, (err, result) => {
