@@ -10,10 +10,10 @@ var router = express.Router();
 router.post('/', function (req, res) {
     connection.query(`SELECT * FROM people WHERE emailPeople='${req.body.email}'`, (err, result) => {
         
-        if (_.isEmpty(result) || err) {     //vérifie si result est un objet vide
+        if (_.isEmpty(result) || err) {     //check if result is empty obj
             res.send([false]);
         }
-        else {                              //sinon lance la comparaison
+        else {                              //else compare it
             bcrypt.compare(req.body.password, result[0].password).then(valid => {
                 res.send([valid, result]);
             }).catch(err => {
